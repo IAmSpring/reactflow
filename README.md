@@ -105,6 +105,11 @@ An advanced implementation showcasing project sourcing and material management i
 
 ![AdvancedPipelineFlow](public/AdvancedPipelineFlow.png)
 
+## Supply Chain Example
+
+![SupplyChainExample](public/SupplyChainExample.png)
+
+
 ### Advanced Features
 
 1. **Node Controls**

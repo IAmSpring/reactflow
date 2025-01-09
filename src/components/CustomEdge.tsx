@@ -45,8 +45,8 @@ export const CustomEdge = ({
       onClick={handleEdgeClick}
       style={{ cursor: 'pointer' }}
     >
-      <BaseEdge 
-        path={edgePath} 
+      <BaseEdge
+        path={edgePath}
         markerEnd={markerEnd}
         style={{
           ...style,
@@ -57,7 +57,10 @@ export const CustomEdge = ({
         }}
       />
       {isHovered && (
-        <g transform={`translate(${labelX - 10} ${labelY - 10})`}>
+        <g 
+          transform={`translate(${labelX - 10} ${labelY - 10})`}
+          onClick={handleEdgeClick}
+        >
           <circle
             r="12"
             fill="white"

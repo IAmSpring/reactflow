@@ -1,0 +1,363 @@
+{
+  "nodes": [
+    {
+      "id": "client1",
+      "type": "client",
+      "position": { "x": -300, "y": 60 },
+      "data": {
+        "label": "Furniture Creator",
+        "description": "High-end furniture manufacturer",
+        "location": "Portland, OR",
+        "products": ["Dining Table", "Coffee Table"],
+        "requirements": {
+          "quality": "Premium",
+          "delivery": "Just-in-time",
+          "certifications": ["FSC", "ISO 9001"]
+        },
+        "isHorizontal": true,
+        "handlePositionsUpdated": 1736455798452
+      },
+      "width": 250,
+      "height": 200,
+      "measured": {
+        "width": 250,
+        "height": 200
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "product1",
+      "type": "product",
+      "position": { "x": 165, "y": -105 },
+      "data": {
+        "label": "Dining Table",
+        "components": ["Table Legs", "Tabletop"],
+        "specifications": {
+          "dimensions": "72\" x 42\" x 30\"",
+          "material": "Solid Oak",
+          "finish": "Natural"
+        },
+        "isHorizontal": true,
+        "handlePositionsUpdated": 1736455798452
+      },
+      "width": 250,
+      "height": 180,
+      "measured": {
+        "width": 250,
+        "height": 180
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "product2",
+      "type": "product",
+      "position": { "x": 165, "y": 315 },
+      "data": {
+        "label": "Coffee Table",
+        "components": ["Table Legs", "Tabletop", "Sealant"],
+        "specifications": {
+          "dimensions": "48\" x 24\" x 18\"",
+          "material": "Walnut",
+          "finish": "Matte"
+        },
+        "isHorizontal": true,
+        "handlePositionsUpdated": 1736455798452
+      },
+      "width": 250,
+      "height": 180,
+      "measured": {
+        "width": 250,
+        "height": 180
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "vendor1",
+      "type": "vendor",
+      "position": { "x": 630, "y": -15 },
+      "data": {
+        "label": "Premium Wood Supply Co.",
+        "location": "Seattle, WA",
+        "components": ["Tabletop"],
+        "capacity": "5000 units/month",
+        "leadTime": "2 weeks",
+        "pricing": "$200-300/unit",
+        "certifications": ["FSC", "ISO 9001"],
+        "contact": {
+          "name": "John Smith",
+          "email": "john@premiumwood.com",
+          "phone": "(206) 555-0100"
+        },
+        "isHorizontal": true,
+        "handlePositionsUpdated": 1736455798452
+      },
+      "width": 280,
+      "height": 220,
+      "measured": {
+        "width": 280,
+        "height": 220
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "vendor2",
+      "type": "vendor",
+      "position": { "x": 630, "y": 195 },
+      "data": {
+        "label": "Custom Legs Manufacturing",
+        "location": "Denver, CO",
+        "components": ["Table Legs"],
+        "capacity": "10000 units/month",
+        "leadTime": "1 week",
+        "pricing": "$150-200/set",
+        "certifications": ["ISO 9001"],
+        "contact": {
+          "name": "Sarah Johnson",
+          "email": "sarah@customlegs.com",
+          "phone": "(303) 555-0200"
+        },
+        "isHorizontal": true,
+        "handlePositionsUpdated": 1736455798452
+      },
+      "width": 280,
+      "height": 220,
+      "measured": {
+        "width": 280,
+        "height": 220
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "vendor3",
+      "type": "vendor",
+      "position": { "x": 630, "y": 555 },
+      "data": {
+        "label": "EcoFinish Solutions",
+        "location": "Austin, TX",
+        "components": ["Sealant"],
+        "capacity": "8000 units/month",
+        "leadTime": "3 days",
+        "pricing": "$50-75/unit",
+        "certifications": ["Green Seal", "ISO 14001"],
+        "contact": {
+          "name": "Mike Wilson",
+          "email": "mike@ecofinish.com",
+          "phone": "(512) 555-0300"
+        },
+        "isHorizontal": true,
+        "handlePositionsUpdated": 1736455798452
+      },
+      "width": 280,
+      "height": 220,
+      "measured": {
+        "width": 280,
+        "height": 220
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "vendor4",
+      "type": "vendor",
+      "position": { "x": 630, "y": -195 },
+      "data": {
+        "label": "Backup Wood Supply",
+        "location": "Portland, OR",
+        "components": ["Tabletop"],
+        "capacity": "3000 units/month",
+        "leadTime": "3 weeks",
+        "pricing": "$180-250/unit",
+        "certifications": ["FSC"],
+        "contact": {
+          "name": "Alice Brown",
+          "email": "alice@backupwood.com",
+          "phone": "(503) 555-0400"
+        },
+        "isBackupVendor": true,
+        "isHorizontal": true,
+        "handlePositionsUpdated": 1736455798452
+      },
+      "width": 280,
+      "height": 220,
+      "measured": {
+        "width": 280,
+        "height": 220
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "vendor5",
+      "type": "vendor",
+      "position": { "x": 630, "y": 375 },
+      "data": {
+        "label": "Backup Legs Co.",
+        "location": "San Francisco, CA",
+        "components": ["Table Legs"],
+        "capacity": "8000 units/month",
+        "leadTime": "2 weeks",
+        "pricing": "$140-190/set",
+        "certifications": ["ISO 9001"],
+        "contact": {
+          "name": "Bob Green",
+          "email": "bob@backuplegs.com",
+          "phone": "(415) 555-0500"
+        },
+        "isBackupVendor": true,
+        "isHorizontal": true,
+        "handlePositionsUpdated": 1736455798452
+      },
+      "width": 280,
+      "height": 220,
+      "measured": {
+        "width": 280,
+        "height": 220
+      },
+      "selected": false,
+      "dragging": false
+    }
+  ],
+  "edges": [
+    {
+      "id": "client1-product1-1736455798452",
+      "source": "client1",
+      "target": "product1",
+      "type": "custom",
+      "animated": true,
+      "style": {
+        "stroke": "#4CAF50",
+        "strokeWidth": 2,
+        "animation": "flow 1s linear infinite",
+        "strokeDasharray": "5 5"
+      },
+      "sourcePosition": "right",
+      "targetPosition": "left"
+    },
+    {
+      "id": "client1-product2-1736455798452",
+      "source": "client1",
+      "target": "product2",
+      "type": "custom",
+      "animated": true,
+      "style": {
+        "stroke": "#4CAF50",
+        "strokeWidth": 2,
+        "animation": "flow 1s linear infinite",
+        "strokeDasharray": "5 5"
+      },
+      "sourcePosition": "right",
+      "targetPosition": "left"
+    },
+    {
+      "id": "product1-vendor1-1736455798452",
+      "source": "product1",
+      "target": "vendor1",
+      "type": "custom",
+      "animated": true,
+      "style": {
+        "stroke": "#4CAF50",
+        "strokeWidth": 2,
+        "animation": "flow 1s linear infinite",
+        "strokeDasharray": "5 5"
+      },
+      "sourcePosition": "right",
+      "targetPosition": "left"
+    },
+    {
+      "id": "product1-vendor2-1736455798452",
+      "source": "product1",
+      "target": "vendor2",
+      "type": "custom",
+      "animated": true,
+      "style": {
+        "stroke": "#4CAF50",
+        "strokeWidth": 2,
+        "animation": "flow 1s linear infinite",
+        "strokeDasharray": "5 5"
+      },
+      "sourcePosition": "right",
+      "targetPosition": "left"
+    },
+    {
+      "id": "product1-vendor4-1736455798452",
+      "source": "product1",
+      "target": "vendor4",
+      "type": "custom",
+      "animated": true,
+      "style": {
+        "stroke": "#4CAF50",
+        "strokeWidth": 2,
+        "animation": "flow 1s linear infinite",
+        "strokeDasharray": "5 5"
+      },
+      "sourcePosition": "right",
+      "targetPosition": "left"
+    },
+    {
+      "id": "product2-vendor1-1736455798453",
+      "source": "product2",
+      "target": "vendor1",
+      "type": "custom",
+      "animated": true,
+      "style": {
+        "stroke": "#4CAF50",
+        "strokeWidth": 2,
+        "animation": "flow 1s linear infinite",
+        "strokeDasharray": "5 5"
+      },
+      "sourcePosition": "right",
+      "targetPosition": "left"
+    },
+    {
+      "id": "product2-vendor2-1736455798453",
+      "source": "product2",
+      "target": "vendor2",
+      "type": "custom",
+      "animated": true,
+      "style": {
+        "stroke": "#4CAF50",
+        "strokeWidth": 2,
+        "animation": "flow 1s linear infinite",
+        "strokeDasharray": "5 5"
+      },
+      "sourcePosition": "right",
+      "targetPosition": "left"
+    },
+    {
+      "id": "product2-vendor3-1736455798453",
+      "source": "product2",
+      "target": "vendor3",
+      "type": "custom",
+      "animated": true,
+      "style": {
+        "stroke": "#4CAF50",
+        "strokeWidth": 2,
+        "animation": "flow 1s linear infinite",
+        "strokeDasharray": "5 5"
+      },
+      "sourcePosition": "right",
+      "targetPosition": "left"
+    },
+    {
+      "id": "product2-vendor5-1736455798453",
+      "source": "product2",
+      "target": "vendor5",
+      "type": "custom",
+      "animated": true,
+      "style": {
+        "stroke": "#4CAF50",
+        "strokeWidth": 2,
+        "animation": "flow 1s linear infinite",
+        "strokeDasharray": "5 5"
+      },
+      "sourcePosition": "right",
+      "targetPosition": "left"
+    }
+  ],
+  "lastUpdated": "2025-01-09T20:50:37.540Z"
+} 

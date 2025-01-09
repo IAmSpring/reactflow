@@ -15,7 +15,7 @@ export const SavedProjectsModal: React.FC<SavedProjectsModalProps> = ({ isOpen, 
   useEffect(() => {
     const keys = Object.keys(localStorage).filter(key => key.startsWith('project_'));
     console.log('Saved project keys:', keys);
-    setSavedProjects(['Demo Project', ...keys]);
+    setSavedProjects(['Demo Project', 'Supply Chain Project', ...keys]);
   }, [isOpen]);
 
   const handleLoad = (key: string) => {
@@ -24,6 +24,10 @@ export const SavedProjectsModal: React.FC<SavedProjectsModalProps> = ({ isOpen, 
       const demoConfig = loadDemoConfig();
       console.log('Loaded demo config:', demoConfig);
       onLoad(demoConfig);
+    } else if (key === 'Supply Chain Project') {
+      const supplyChainConfig = loadDemoConfig('supplyChainConfig');
+      console.log('Loaded supply chain config:', supplyChainConfig);
+      onLoad(supplyChainConfig);
     } else {
       const projectData = loadProject(key.replace('project_', ''));
       console.log('Loaded project data:', projectData);
@@ -45,7 +49,11 @@ export const SavedProjectsModal: React.FC<SavedProjectsModalProps> = ({ isOpen, 
 
   const formatTimestamp = (key: string) => {
     const timestamp = key.replace('project_', '');
-    return format(new Date(timestamp), 'PPpp');
+    const date = new Date(timestamp);
+    if (isNaN(date.getTime())) {
+      return 'Invalid Date';
+    }
+    return format(date, 'PPpp');
   };
 
   const handleClearStorage = () => {
@@ -108,7 +116,7 @@ export const SavedProjectsModal: React.FC<SavedProjectsModalProps> = ({ isOpen, 
       }}>
         <h2>Saved Projects</h2>
         <ul style={{ listStyle: 'none', padding: 0 }}>
-          {savedProjects.map((key, index) => (
+          {savedProjects.map((key) => (
             <li key={key} style={{ marginBottom: '10px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <button onClick={() => handleLoad(key)} style={{
                 flexGrow: 1,
@@ -119,9 +127,9 @@ export const SavedProjectsModal: React.FC<SavedProjectsModalProps> = ({ isOpen, 
                 borderRadius: '4px',
                 cursor: 'pointer',
               }}>
-                {key === 'Demo Project' ? key : formatTimestamp(key)}
+                {key === 'Demo Project' || key === 'Supply Chain Project' ? key : formatTimestamp(key)}
               </button>
-              {key !== 'Demo Project' && (
+              {key !== 'Demo Project' && key !== 'Supply Chain Project' && (
                 <button onClick={() => handleDeleteProject(key)} style={{
                   marginLeft: '10px',
                   backgroundColor: 'transparent',
