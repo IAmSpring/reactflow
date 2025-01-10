@@ -227,7 +227,7 @@
       "id": "client1-product1-1736455798452",
       "source": "client1",
       "target": "product1",
-      "type": "custom",
+      "type": "default",
       "animated": true,
       "style": {
         "stroke": "#4CAF50",
@@ -242,7 +242,7 @@
       "id": "client1-product2-1736455798452",
       "source": "client1",
       "target": "product2",
-      "type": "custom",
+      "type": "default",
       "animated": true,
       "style": {
         "stroke": "#4CAF50",
@@ -257,7 +257,7 @@
       "id": "product1-vendor1-1736455798452",
       "source": "product1",
       "target": "vendor1",
-      "type": "custom",
+      "type": "default",
       "animated": true,
       "style": {
         "stroke": "#4CAF50",
@@ -272,7 +272,7 @@
       "id": "product1-vendor2-1736455798452",
       "source": "product1",
       "target": "vendor2",
-      "type": "custom",
+      "type": "default",
       "animated": true,
       "style": {
         "stroke": "#4CAF50",
@@ -287,7 +287,7 @@
       "id": "product1-vendor4-1736455798452",
       "source": "product1",
       "target": "vendor4",
-      "type": "custom",
+      "type": "default",
       "animated": true,
       "style": {
         "stroke": "#4CAF50",
@@ -302,7 +302,7 @@
       "id": "product2-vendor1-1736455798453",
       "source": "product2",
       "target": "vendor1",
-      "type": "custom",
+      "type": "default",
       "animated": true,
       "style": {
         "stroke": "#4CAF50",
@@ -317,7 +317,7 @@
       "id": "product2-vendor2-1736455798453",
       "source": "product2",
       "target": "vendor2",
-      "type": "custom",
+      "type": "default",
       "animated": true,
       "style": {
         "stroke": "#4CAF50",
@@ -332,7 +332,7 @@
       "id": "product2-vendor3-1736455798453",
       "source": "product2",
       "target": "vendor3",
-      "type": "custom",
+      "type": "default",
       "animated": true,
       "style": {
         "stroke": "#4CAF50",
@@ -347,7 +347,7 @@
       "id": "product2-vendor5-1736455798453",
       "source": "product2",
       "target": "vendor5",
-      "type": "custom",
+      "type": "default",
       "animated": true,
       "style": {
         "stroke": "#4CAF50",

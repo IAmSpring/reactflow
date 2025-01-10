@@ -28,16 +28,13 @@ import { ApiNode } from './nodes/ApiNode';
 import type { 
   AppNode, 
   ButtonNodeType, 
-  ApiNodeType, 
-  ButtonNodeData, 
-  ApiNodeData,
+  ApiNodeType,
   HttpMethod,
   ScriptNodeType
 } from './nodes/types';
 import { Modal } from './components/Modal';
-import { RotationControl } from './components/RotationControl';
 import { CustomEdge } from './components/CustomEdge';
-import { storage, saveProject, loadProject } from './utils/storage';
+import { storage, saveProject } from './utils/storage';
 import { PythonNode } from './nodes/PythonNode';
 import { JavaScriptNode } from './nodes/JavaScriptNode';
 import { loadDemoConfig } from './utils/loadDemoConfig';
@@ -157,7 +154,7 @@ function Flow() {
       ...edge,
       // Force edge recreation with new positions
       id: `${edge.source}-${edge.target}-${Date.now()}`,
-      type: 'custom',
+      type: 'default',
       sourcePosition: newIsHorizontal ? Position.Right : Position.Bottom,
       targetPosition: newIsHorizontal ? Position.Left : Position.Top,
       animated: true,
@@ -197,7 +194,7 @@ function Flow() {
 
   // Update default edge options
   const defaultEdgeOptions = useMemo(() => ({
-    type: 'custom',
+    type: 'default',
     animated: true,
     style: { 
       stroke: '#4CAF50',
@@ -256,7 +253,7 @@ function Flow() {
     setEdges((eds) => addEdge(
       {
         ...params,
-        type: 'custom',
+        type: 'default',
         animated: true,
         style: { 
           stroke: '#4CAF50',
