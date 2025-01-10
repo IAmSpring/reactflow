@@ -612,7 +612,7 @@ const output = processData(input);
               <label style={{ display: 'block', marginBottom: '5px' }}>Components:</label>
               <input
                 type="text"
-                value={node?.data.components.join(', ') || ''}
+                value={node?.data.components ? node.data.components.join(', ') : ''}
                 onChange={handleInputChange((value) => setNodeData('components', value.split(', ')))}
                 style={{
                   width: '100%',
@@ -666,7 +666,7 @@ const output = processData(input);
               <label style={{ display: 'block', marginBottom: '5px' }}>Components:</label>
               <input
                 type="text"
-                value={node?.data.components.join(', ') || ''}
+                value={node?.data.components ? node.data.components.join(', ') : ''}
                 onChange={handleInputChange((value) => setNodeData('components', value.split(', ')))}
                 style={{
                   width: '100%',
@@ -727,7 +727,7 @@ const output = processData(input);
               <label style={{ display: 'block', marginBottom: '5px' }}>Certifications:</label>
               <input
                 type="text"
-                value={node?.data.certifications.join(', ') || ''}
+                value={node?.data.certifications ? node.data.certifications.join(', ') : ''}
                 onChange={handleInputChange((value) => setNodeData('certifications', value.split(', ')))}
                 style={{
                   width: '100%',
