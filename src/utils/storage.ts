@@ -31,7 +31,7 @@ export const storage = {
       const cache = this.getAllResponses();
       cache[nodeId] = {
         ...data,
-        lastRun: data.lastRun.toISOString()
+        lastRun: new Date(data.lastRun)
       };
       localStorage.setItem(STORAGE_KEYS.API_RESPONSES, JSON.stringify(cache));
     } catch (error) {
@@ -182,4 +182,14 @@ export const saveProject = (projectData: any) => {
 export const loadProject = (timestamp: string) => {
   const projectData = localStorage.getItem(`project_${timestamp}`);
   return projectData ? JSON.parse(projectData) : null;
+};
+
+export const clearAllProjects = () => {
+  const keys = Object.keys(localStorage);
+  keys.forEach(key => {
+    if (key.startsWith('project_')) {
+      localStorage.removeItem(key);
+    }
+  });
+  storage.clearAll();
 }; 

@@ -28,16 +28,13 @@ import { ApiNode } from './nodes/ApiNode';
 import type { 
   AppNode, 
   ButtonNodeType, 
-  ApiNodeType, 
-  ButtonNodeData, 
-  ApiNodeData,
+  ApiNodeType,
   HttpMethod,
   ScriptNodeType
 } from './nodes/types';
 import { Modal } from './components/Modal';
-import { RotationControl } from './components/RotationControl';
 import { CustomEdge } from './components/CustomEdge';
-import { storage, saveProject, loadProject } from './utils/storage';
+import { storage, saveProject } from './utils/storage';
 import { PythonNode } from './nodes/PythonNode';
 import { JavaScriptNode } from './nodes/JavaScriptNode';
 import { loadDemoConfig } from './utils/loadDemoConfig';
@@ -45,6 +42,9 @@ import { SavedProjectsModal } from './components/SavedProjectsModal';
 import { SettingsModal } from './components/SettingsModal';
 import { CmsNode } from './nodes/CmsNode';
 import { ProjectMgmtNode } from './nodes/ProjectMgmtNode';
+import { ClientNode } from './nodes/ClientNode';
+import { ProductNode } from './nodes/ProductNode';
+import { VendorNode } from './nodes/VendorNode';
 
 // Define initial edges if not already defined
 const defaultEdges: Edge[] = [];
@@ -154,7 +154,7 @@ function Flow() {
       ...edge,
       // Force edge recreation with new positions
       id: `${edge.source}-${edge.target}-${Date.now()}`,
-      type: 'custom',
+      type: 'default',
       sourcePosition: newIsHorizontal ? Position.Right : Position.Bottom,
       targetPosition: newIsHorizontal ? Position.Left : Position.Top,
       animated: true,
@@ -181,7 +181,10 @@ function Flow() {
     python: createWithControls(PythonNode, isHorizontal, handleEditNode, handleDeleteNode),
     javascript: createWithControls(JavaScriptNode, isHorizontal, handleEditNode, handleDeleteNode),
     cms: createWithControls(CmsNode, isHorizontal, handleEditNode, handleDeleteNode),
-    projectMgmt: createWithControls(ProjectMgmtNode, isHorizontal, handleEditNode, handleDeleteNode)
+    projectMgmt: createWithControls(ProjectMgmtNode, isHorizontal, handleEditNode, handleDeleteNode),
+    vendor: createWithControls(VendorNode, isHorizontal, handleEditNode, handleDeleteNode),
+    client: createWithControls(ClientNode, isHorizontal, handleEditNode, handleDeleteNode),
+    product: createWithControls(ProductNode, isHorizontal, handleEditNode, handleDeleteNode),
   }), [isHorizontal, handleEditNode, handleDeleteNode]);
 
   // Define edge types
@@ -191,7 +194,7 @@ function Flow() {
 
   // Update default edge options
   const defaultEdgeOptions = useMemo(() => ({
-    type: 'custom',
+    type: 'default',
     animated: true,
     style: { 
       stroke: '#4CAF50',
@@ -250,7 +253,7 @@ function Flow() {
     setEdges((eds) => addEdge(
       {
         ...params,
-        type: 'custom',
+        type: 'default',
         animated: true,
         style: { 
           stroke: '#4CAF50',
@@ -508,6 +511,11 @@ function Flow() {
     return null;
   };
 
+  const handleLoadProject = (projectData: any) => {
+    setNodes(projectData.nodes);
+    setEdges(projectData.edges);
+  };
+
   return (
     <div style={{ width: '100vw', height: '100vh' }} ref={reactFlowWrapper}>
       <div style={{
@@ -665,10 +673,7 @@ function Flow() {
       <SavedProjectsModal
         isOpen={isProjectsModalOpen}
         onClose={() => setIsProjectsModalOpen(false)}
-        onLoad={(projectData) => {
-          setNodes(projectData.nodes);
-          setEdges(projectData.edges);
-        }}
+        onLoad={handleLoadProject}
       />
       <SettingsModal
         isOpen={isSettingsModalOpen}

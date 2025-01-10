@@ -6,6 +6,7 @@ import { PythonNode } from './PythonNode';
 import { JavaScriptNode } from './JavaScriptNode';
 import { CmsNode } from './CmsNode';
 import { ProjectMgmtNode } from './ProjectMgmtNode';
+import { VendorNode } from './VendorNode';
 
 export const getNextNodeId = (nodes: AppNode[]): string => {
   const nodeNumbers = nodes
@@ -25,5 +26,6 @@ export const nodeTypes: NodeTypes = {
   python: PythonNode,
   javascript: JavaScriptNode,
   cms: CmsNode,
-  projectMgmt: ProjectMgmtNode
+  projectMgmt: ProjectMgmtNode,
+  vendor: VendorNode
 };

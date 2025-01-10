@@ -39,7 +39,10 @@ const nodeTypeOptions = [
   { value: 'python', label: 'Python Script' },
   { value: 'javascript', label: 'JavaScript Script' },
   { value: 'cms', label: 'CMS Integration' },
-  { value: 'projectMgmt', label: 'Project Management' }
+  { value: 'projectMgmt', label: 'Project Management' },
+  { value: 'client', label: 'Client Node' },
+  { value: 'product', label: 'Product Node' },
+  { value: 'vendor', label: 'Vendor Node' }
 ];
 
 export const Modal: React.FC<ModalProps> = ({ 
@@ -527,6 +530,237 @@ const output = processData(input);
                   padding: '8px',
                   borderRadius: '4px',
                   border: '1px solid #ccc',
+                  marginBottom: '10px'
+                }}
+              />
+            </div>
+          </>
+        )}
+
+        {selectedType === 'client' && (
+          <>
+            <div style={{ marginBottom: '15px' }}>
+              <label style={{ display: 'block', marginBottom: '5px' }}>Description:</label>
+              <input
+                type="text"
+                value={node?.data.description || ''}
+                onChange={handleInputChange((value) => setNodeData('description', value))}
+                style={{
+                  width: '100%',
+                  padding: '8px',
+                  borderRadius: '4px',
+                  border: '1px solid #ccc',
+                  marginBottom: '10px'
+                }}
+              />
+            </div>
+            <div style={{ marginBottom: '15px' }}>
+              <label style={{ display: 'block', marginBottom: '5px' }}>Location:</label>
+              <input
+                type="text"
+                value={typeof node?.data.location === 'string' ? node.data.location : `${node?.data.location?.city || ''}, ${node?.data.location?.state || ''}`}
+                onChange={handleInputChange((value) => {
+                  const [city, state] = value.split(', ');
+                  setNodeData('location', { city, state });
+                })}
+                style={{
+                  width: '100%',
+                  padding: '8px',
+                  borderRadius: '4px',
+                  border: '1px solid #ccc',
+                  marginBottom: '10px'
+                }}
+              />
+            </div>
+            <div style={{ marginBottom: '15px' }}>
+              <label style={{ display: 'block', marginBottom: '5px' }}>Products:</label>
+              <input
+                type="text"
+                value={node?.data.products.join(', ') || ''}
+                onChange={handleInputChange((value) => setNodeData('products', value.split(', ')))}
+                style={{
+                  width: '100%',
+                  padding: '8px',
+                  borderRadius: '4px',
+                  border: '1px solid #ccc',
+                  marginBottom: '10px'
+                }}
+              />
+            </div>
+            <div style={{ marginBottom: '15px' }}>
+              <label style={{ display: 'block', marginBottom: '5px' }}>Requirements:</label>
+              <textarea
+                value={JSON.stringify(node?.data.requirements, null, 2) || ''}
+                onChange={handleInputChange((value) => setNodeData('requirements', JSON.parse(value)))}
+                style={{
+                  width: '100%',
+                  padding: '8px',
+                  borderRadius: '4px',
+                  border: '1px solid #ccc',
+                  minHeight: '100px',
+                  fontFamily: 'monospace'
+                }}
+                placeholder="Enter JSON for requirements..."
+              />
+            </div>
+          </>
+        )}
+
+        {selectedType === 'product' && (
+          <>
+            <div style={{ marginBottom: '15px' }}>
+              <label style={{ display: 'block', marginBottom: '5px' }}>Components:</label>
+              <input
+                type="text"
+                value={node?.data.components ? node.data.components.join(', ') : ''}
+                onChange={handleInputChange((value) => setNodeData('components', value.split(', ')))}
+                style={{
+                  width: '100%',
+                  padding: '8px',
+                  borderRadius: '4px',
+                  border: '1px solid #ccc',
+                  marginBottom: '10px'
+                }}
+              />
+            </div>
+            <div style={{ marginBottom: '15px' }}>
+              <label style={{ display: 'block', marginBottom: '5px' }}>Specifications:</label>
+              <textarea
+                value={JSON.stringify(node?.data.specifications, null, 2) || ''}
+                onChange={handleInputChange((value) => setNodeData('specifications', JSON.parse(value)))}
+                style={{
+                  width: '100%',
+                  padding: '8px',
+                  borderRadius: '4px',
+                  border: '1px solid #ccc',
+                  minHeight: '100px',
+                  fontFamily: 'monospace'
+                }}
+                placeholder="Enter JSON for specifications..."
+              />
+            </div>
+          </>
+        )}
+
+        {selectedType === 'vendor' && (
+          <>
+            <div style={{ marginBottom: '15px' }}>
+              <label style={{ display: 'block', marginBottom: '5px' }}>Location:</label>
+              <input
+                type="text"
+                value={typeof node?.data.location === 'string' ? node.data.location : `${node?.data.location?.city || ''}, ${node?.data.location?.state || ''}`}
+                onChange={handleInputChange((value) => {
+                  const [city, state] = value.split(', ');
+                  setNodeData('location', { city, state });
+                })}
+                style={{
+                  width: '100%',
+                  padding: '8px',
+                  borderRadius: '4px',
+                  border: '1px solid #ccc',
+                  marginBottom: '10px'
+                }}
+              />
+            </div>
+            <div style={{ marginBottom: '15px' }}>
+              <label style={{ display: 'block', marginBottom: '5px' }}>Components:</label>
+              <input
+                type="text"
+                value={node?.data.components ? node.data.components.join(', ') : ''}
+                onChange={handleInputChange((value) => setNodeData('components', value.split(', ')))}
+                style={{
+                  width: '100%',
+                  padding: '8px',
+                  borderRadius: '4px',
+                  border: '1px solid #ccc',
+                  marginBottom: '10px'
+                }}
+              />
+            </div>
+            <div style={{ marginBottom: '15px' }}>
+              <label style={{ display: 'block', marginBottom: '5px' }}>Capacity:</label>
+              <input
+                type="text"
+                value={node?.data.capacity || ''}
+                onChange={handleInputChange((value) => setNodeData('capacity', value))}
+                style={{
+                  width: '100%',
+                  padding: '8px',
+                  borderRadius: '4px',
+                  border: '1px solid #ccc',
+                  marginBottom: '10px'
+                }}
+              />
+            </div>
+            <div style={{ marginBottom: '15px' }}>
+              <label style={{ display: 'block', marginBottom: '5px' }}>Lead Time:</label>
+              <input
+                type="text"
+                value={node?.data.leadTime || ''}
+                onChange={handleInputChange((value) => setNodeData('leadTime', value))}
+                style={{
+                  width: '100%',
+                  padding: '8px',
+                  borderRadius: '4px',
+                  border: '1px solid #ccc',
+                  marginBottom: '10px'
+                }}
+              />
+            </div>
+            <div style={{ marginBottom: '15px' }}>
+              <label style={{ display: 'block', marginBottom: '5px' }}>Pricing:</label>
+              <textarea
+                value={JSON.stringify(node?.data.pricing, null, 2) || ''}
+                onChange={handleInputChange((value) => setNodeData('pricing', JSON.parse(value)))}
+                style={{
+                  width: '100%',
+                  padding: '8px',
+                  borderRadius: '4px',
+                  border: '1px solid #ccc',
+                  minHeight: '100px',
+                  fontFamily: 'monospace'
+                }}
+                placeholder="Enter JSON for pricing..."
+              />
+            </div>
+            <div style={{ marginBottom: '15px' }}>
+              <label style={{ display: 'block', marginBottom: '5px' }}>Certifications:</label>
+              <input
+                type="text"
+                value={node?.data.certifications ? node.data.certifications.join(', ') : ''}
+                onChange={handleInputChange((value) => setNodeData('certifications', value.split(', ')))}
+                style={{
+                  width: '100%',
+                  padding: '8px',
+                  borderRadius: '4px',
+                  border: '1px solid #ccc',
+                  marginBottom: '10px'
+                }}
+              />
+            </div>
+            <div style={{ marginBottom: '15px' }}>
+              <label style={{ display: 'block', marginBottom: '5px' }}>Contact:</label>
+              <textarea
+                value={JSON.stringify(node?.data.contact, null, 2) || ''}
+                onChange={handleInputChange((value) => setNodeData('contact', JSON.parse(value)))}
+                style={{
+                  width: '100%',
+                  padding: '8px',
+                  borderRadius: '4px',
+                  border: '1px solid #ccc',
+                  minHeight: '100px',
+                  fontFamily: 'monospace'
+                }}
+                placeholder="Enter JSON for contact..."
+              />
+            </div>
+            <div style={{ marginBottom: '15px' }}>
+              <label style={{ display: 'block', marginBottom: '5px' }}>Is Backup Vendor:</label>
+              <input
+                type="checkbox"
+                checked={node?.data.isBackupVendor || false}
+                onChange={handleInputChange((value) => setNodeData('isBackupVendor', value))}
+                style={{
                   marginBottom: '10px'
                 }}
               />

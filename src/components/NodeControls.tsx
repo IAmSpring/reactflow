@@ -41,7 +41,7 @@ export const NodeControls: React.FC<NodeControlsProps> = ({ node, onEdit, onDele
       {(isApiNode || isCmsNode || isProjectMgmtNode) && (
         <button
           onClick={handlePlayClick}
-          disabled={node.data.isLoading}
+          disabled={!!node.data.isLoading}
           style={{
             ...nodeControlsStyles.button,
             backgroundColor: node.data.isLoading ? '#ccc' : '#4CAF50',
