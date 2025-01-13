@@ -45,6 +45,7 @@ import { ProjectMgmtNode } from './nodes/ProjectMgmtNode';
 import { ClientNode } from './nodes/ClientNode';
 import { ProductNode } from './nodes/ProductNode';
 import { VendorNode } from './nodes/VendorNode';
+import Sidebar from './components/Sidebar';
 
 // Define initial edges if not already defined
 const defaultEdges: Edge[] = [];
@@ -334,8 +335,8 @@ function Flow() {
         type: 'api',
         position,
         data: {
-          label: 'Button Node',
-          onClick: () => alert('Button Node clicked!'),
+          label: 'New Node',
+          onClick: () => alert('New Node clicked!'),
           isHorizontal
         }
       } as ButtonNodeType;
@@ -450,20 +451,16 @@ function Flow() {
     setEdges((eds) => eds.filter((e) => e.id !== edge.id));
   }, [setEdges]);
 
-  const handleRevertToDemo = () => {
-    const demoConfig = loadDemoConfig();
-    setNodes(demoConfig.nodes);
-    setEdges(demoConfig.edges);
-    storage.saveAppState(demoConfig.nodes, demoConfig.edges);
-  };
-
   const handleClearBoard = () => {
-    console.log('Clearing storage');
-    storage.clearAll(); // Clear all storage first
-    setNodes([]);
-    setEdges([]);
-    console.log('Board cleared');
-    setViewport({ x: 0, y: 0, zoom: 1 });
+    const confirmClear = window.confirm("Are you sure you want to clear the board? This will wipe away any current data. Consider saving your current board first.");
+    if (confirmClear) {
+      console.log('Clearing storage');
+      storage.clearAll(); // Clear all storage first
+      setNodes([]);
+      setEdges([]);
+      console.log('Board cleared');
+      setViewport({ x: 0, y: 0, zoom: 1 });
+    }
   };
 
   const renderAddNodeButton = () => {
@@ -517,176 +514,59 @@ function Flow() {
   };
 
   return (
-    <div style={{ width: '100vw', height: '100vh' }} ref={reactFlowWrapper}>
-      <div style={{
-        position: 'absolute',
-        top: 10,
-        left: 10,
-        zIndex: 5,
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '10px'
-      }}>
-        <button
-          onClick={() => setIsSettingsModalOpen(true)}
-          style={{
-            backgroundColor: 'white',
-            borderRadius: '4px',
-            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-            padding: '8px',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            border: '2px solid black'
-          }}
+    <div style={{ display: 'flex', width: '100vw', height: '100vh', overflow: 'hidden' }}>
+      <Sidebar 
+        onRotate={handleRotate} 
+        onOpenSettings={() => setIsSettingsModalOpen(true)} 
+        onSaveProject={() => saveProject({ nodes, edges })} 
+        onLoadProject={() => setIsProjectsModalOpen(true)} 
+        onClearBoard={handleClearBoard} 
+        onAddNode={handleAddNode} 
+      />
+      <div style={{ flex: 1, overflow: 'auto' }} ref={reactFlowWrapper}>
+        <ReactFlow
+          nodes={nodes}
+          edges={edges}
+          nodeTypes={nodeTypes}
+          edgeTypes={edgeTypes}
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
+          onConnect={onConnect}
+          onConnectEnd={onConnectEnd}
+          onEdgeClick={onEdgeClick}
+          fitView
+          snapToGrid
+          snapGrid={[15, 15]}
+          defaultEdgeOptions={defaultEdgeOptions}
         >
-          <img src="/gear-icon.svg" alt="Settings" style={{ width: '24px', height: '24px' }} />
-        </button>
-        <button
-          onClick={handleRotate}
-          style={{
-            backgroundColor: 'white',
-            borderRadius: '4px',
-            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-            padding: '8px',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            border: '2px solid black'
-          }}
-        >
-          <img 
-            src="/rotate-icon.svg" 
-            alt="Rotate" 
-            style={{ 
-              width: '24px', 
-              height: '24px',
-              transform: isHorizontal ? 'rotate(90deg)' : 'rotate(0deg)',
-              transition: 'transform 0.3s ease-in-out'
-            }} 
-          />
-        </button>
+          <Background />
+          <MiniMap zoomable pannable />
+          <Controls />
+        </ReactFlow>
+        <Modal 
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          onSave={handleSaveChanges}
+          node={selectedNode}
+          hasChanges={hasChanges}
+        />
+        <SavedProjectsModal
+          isOpen={isProjectsModalOpen}
+          onClose={() => setIsProjectsModalOpen(false)}
+          onLoad={handleLoadProject}
+        />
+        <SettingsModal
+          isOpen={isSettingsModalOpen}
+          onClose={() => setIsSettingsModalOpen(false)}
+          onTimezoneChange={setTimezone}
+          currentTimezone={timezone}
+        />
+        {renderAddNodeButton()}
       </div>
-      <ReactFlow
-        nodes={nodes}
-        edges={edges}
-        nodeTypes={nodeTypes}
-        edgeTypes={edgeTypes}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
-        onConnectEnd={onConnectEnd}
-        onEdgeClick={onEdgeClick}
-        fitView
-        snapToGrid
-        snapGrid={[15, 15]}
-        defaultEdgeOptions={defaultEdgeOptions}
-      >
-        <Background />
-        <MiniMap zoomable pannable />
-        <Controls />
-        <div style={{ 
-          position: 'absolute', 
-          right: 10, 
-          top: 10, 
-          zIndex: 4,
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '10px'
-        }}>
-          <button 
-            onClick={handleAddNode}
-            style={{
-              padding: '8px 16px',
-              backgroundColor: '#4CAF50',
-              color: 'white',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: 'pointer',
-            }}
-          >
-            Add Node
-          </button>
-          <button
-            onClick={() => saveProject({ nodes, edges })}
-            style={{
-              padding: '8px 16px',
-              backgroundColor: '#4CAF50',
-              color: 'white',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: 'pointer',
-            }}
-          >
-            Save Project
-          </button>
-          <button
-            onClick={() => setIsProjectsModalOpen(true)}
-            style={{
-              padding: '8px 16px',
-              backgroundColor: '#2196F3',
-              color: 'white',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: 'pointer',
-            }}
-          >
-            Load Project
-          </button>
-          <button 
-            onClick={handleClearBoard}
-            style={{
-              padding: '8px 16px',
-              backgroundColor: '#F44336',
-              color: 'white',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: 'pointer',
-            }}
-          >
-            Clear Board
-          </button>
-          <button
-            onClick={handleRevertToDemo}
-            style={{
-              padding: '8px 16px',
-              backgroundColor: 'blue',
-              color: 'white',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: 'pointer',
-            }}
-          >
-            Revert to Demo
-          </button>
-        </div>
-      </ReactFlow>
-      <Modal 
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-        onSave={handleSaveChanges}
-        node={selectedNode}
-        hasChanges={hasChanges}
-      />
-      <SavedProjectsModal
-        isOpen={isProjectsModalOpen}
-        onClose={() => setIsProjectsModalOpen(false)}
-        onLoad={handleLoadProject}
-      />
-      <SettingsModal
-        isOpen={isSettingsModalOpen}
-        onClose={() => setIsSettingsModalOpen(false)}
-        onTimezoneChange={setTimezone}
-        currentTimezone={timezone}
-      />
-      {renderAddNodeButton()}
     </div>
   );
 }
 
-// Wrap the Flow component with ReactFlowProvider
 export default function App() {
   return (
     <ReactFlowProvider>
