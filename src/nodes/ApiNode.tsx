@@ -45,6 +45,10 @@ export const ApiNode = React.memo(({ data, isConnectable = true, selected }: Api
   useEffect(() => {
     console.log('Initializing executeApiCall');
     if (data.onUpdate) {
+      console.log('Calling onUpdate with data:', {
+        ...data,
+        executeApiCall: apiCall
+      });
       data.onUpdate({
         ...data,
         executeApiCall: apiCall

@@ -88,7 +88,7 @@
         },
         "lastRun": "2025-01-08T17:02:44.516Z",
         "method": "GET",
-        "url": "https://your-project-system/api/update",
+        "url": "/api/demo-response",
         "payload": "",
         "dataKey": "",
         "isLoading": false

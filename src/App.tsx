@@ -331,7 +331,7 @@ function Flow() {
 
       const newNode = {
         id: getNextNodeId(nodes),
-        type: 'button',
+        type: 'api',
         position,
         data: {
           label: 'Button Node',
